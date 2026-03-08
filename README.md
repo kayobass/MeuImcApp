@@ -23,5 +23,5 @@ Design inspirado no projeto do curso de React Native do OneBitCode.
 
 
 
-- **Android SDK:** A base do aplicativo, permitindo a criação de interfaces móveis multiplataforma.
+- **Android SDK:** A base do aplicativo, permitindo a criação de interfaces móveis.
 - **Kotlin:** Lógica de programação
