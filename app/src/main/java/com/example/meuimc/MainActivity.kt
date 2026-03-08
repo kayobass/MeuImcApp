@@ -36,17 +36,24 @@ class MainActivity : AppCompatActivity() {
             val altura = binding.editAltura.text.toString().trim()
             val peso = binding.editPeso.text.toString().trim()
 
-            if (altura.isEmpty()) {
-                if (peso.isNotEmpty()) binding.txtCampoPeso.text = ""
-                binding.txtCampoAltura.text = "Preencha o campo*"
-            } else if (peso.isEmpty()) {
-                if (altura.isNotEmpty()) binding.txtCampoAltura.text = ""
-                binding.txtCampoPeso.text = "Preencha o campo*"
-            } else {
-                intent.putExtra("CHAVE_IMC", calcularImc(altura.toDouble(), peso.toDouble()))
+            binding.txtCampoAltura.text = ""
+            binding.txtCampoPeso.text = ""
 
-                limparTextos()
-                startActivity(intent)
+            when {
+                altura.isEmpty() -> {
+                    binding.txtCampoAltura.text = "Preencha o campo*"
+                    binding.editAltura.requestFocus()
+                }
+                peso.isEmpty() -> {
+                    binding.txtCampoPeso.text = "Preencha o campo*"
+                    binding.editPeso.requestFocus()
+                }
+                else -> {
+                    val imc = calcularImc(altura.toDouble(), peso.toDouble())
+                    intent.putExtra("CHAVE_IMC", imc)
+                    limparTextos()
+                    startActivity(intent)
+                }
             }
         }
     }
