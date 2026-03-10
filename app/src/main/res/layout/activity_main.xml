@@ -56,10 +56,10 @@
                     android:id="@+id/txt_campo_altura"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:text=""
                     android:textColor="#f00"
                     android:textSize="16sp" />
+
 
                 <EditText
                     android:id="@+id/edit_altura"
@@ -70,10 +70,9 @@
                     android:hint="Ex: 1.80"
                     android:imeOptions="actionNext"
                     android:inputType="number|numberDecimal"
-                    android:padding="12dp"
+                    android:padding="16dp"
                     android:textColor="@color/black"
                     android:textColorHint="#990E0E0E" />
-
 
                 <TextView
                     android:layout_width="match_parent"
@@ -87,7 +86,7 @@
                     android:id="@+id/txt_campo_peso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:text=""
                     android:textColor="#f00"
                     android:textSize="16sp" />
@@ -96,12 +95,12 @@
                     android:id="@+id/edit_peso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5sp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/edittext_rounded_bg"
                     android:hint="Ex: 75"
                     android:imeOptions="actionDone"
                     android:inputType="number|numberDecimal"
-                    android:padding="12dp"
+                    android:padding="16dp"
                     android:textColor="@color/black"
                     android:textColorHint="#990E0E0E" />
 
