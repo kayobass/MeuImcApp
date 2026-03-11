@@ -2,8 +2,10 @@ package com.example.meuimc
 
 import android.content.Intent
 import android.content.Intent.ACTION_SEND
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.TypedValue
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -15,6 +17,7 @@ import java.text.DecimalFormat
 class ResultActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityResultBinding
+    private lateinit var status: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,49 +28,32 @@ class ResultActivity : AppCompatActivity() {
 
         val decimalFormat = DecimalFormat("##.##")
         val imcValue = decimalFormat.format(imc)
-        lateinit var imcStatus: String
         binding.txtImc.text = imcValue
 
         when {
             imc < 17.0 -> {
-                imcStatus = "Muito Abaixo"
-                binding.txtImc.setTextColor(ContextCompat.getColor(this,
+                destacarLinha(imcStatus = "Muito Abaixo", textView = binding.txtMuitoAbaixo, cor = ContextCompat.getColor(this,
                     R.color.muito_abaixo))
-                binding.txtMuitoAbaixo.text = "-> $imcStatus"
-                binding.txtMuitoAbaixo.setTextSize(TypedValue.COMPLEX_UNIT_SP, 26f)
             }
 
             imc < 18.5 -> {
-                imcStatus = "Abaixo"
-                binding.txtImc.setTextColor(ContextCompat.getColor(this,
+                destacarLinha(imcStatus = "Abaixo", textView = binding.txtAbaixo, cor = ContextCompat.getColor(this,
                     R.color.abaixo))
-                binding.txtAbaixo.text = "-> $imcStatus"
-                binding.txtAbaixo.setTextSize(TypedValue.COMPLEX_UNIT_SP, 26f)
-
             }
 
             imc < 25 -> {
-                imcStatus = "Normal"
-                binding.txtImc.setTextColor(ContextCompat.getColor(this,
+                destacarLinha(imcStatus = "Normal", textView = binding.txtNormal, cor = ContextCompat.getColor(this,
                     R.color.normal))
-                binding.txtNormal.text = "-> $imcStatus"
-                binding.txtNormal.setTextSize(TypedValue.COMPLEX_UNIT_SP, 26f)
             }
 
             imc < 30 -> {
-                imcStatus = "Acima"
-                binding.txtImc.setTextColor(ContextCompat.getColor(this,
+                destacarLinha(imcStatus = "Acima", textView = binding.txtAcima, cor = ContextCompat.getColor(this,
                     R.color.acima))
-                binding.txtAcima.text = "-> $imcStatus"
-                binding.txtAcima.setTextSize(TypedValue.COMPLEX_UNIT_SP, 26f)
             }
 
             else -> {
-                imcStatus = "Muito Acima"
-                binding.txtImc.setTextColor(ContextCompat.getColor(this,
+                destacarLinha(imcStatus = "Muito Acima", textView = binding.txtMuitoAcima, cor = ContextCompat.getColor(this,
                     R.color.muito_acima))
-                binding.txtMuitoAcima.text = "-> $imcStatus"
-                binding.txtMuitoAcima.setTextSize(TypedValue.COMPLEX_UNIT_SP, 26f)
             }
         }
 
@@ -80,14 +66,18 @@ class ResultActivity : AppCompatActivity() {
         }
 
         binding.buttonCompartilhar.setOnClickListener {
-            val mensagem = "Meu IMC hoje é: $imcValue ($imcStatus)"
-            val intent = Intent(ACTION_SEND).apply {
-                type = "text/plain"
+            val mensagem = "Meu IMC hoje é: $imcValue ($status)"
+
+            val sendIntent = Intent(ACTION_SEND).apply {
                 putExtra(Intent.EXTRA_TEXT, mensagem)
+                type = "text/plain"
             }
 
-            val chooser = Intent.createChooser(intent, "Compartilhar via:")
-            startActivity(chooser)
+            val shareIntent = Intent.createChooser(sendIntent, "Compartilhar via:")
+
+            if (shareIntent.resolveActivity(packageManager) != null) {
+                startActivity(shareIntent)
+            }
         }
 
         binding.buttonVoltar.setOnClickListener {
@@ -95,4 +85,15 @@ class ResultActivity : AppCompatActivity() {
         }
 
     }
+
+    private fun destacarLinha(imcStatus: String, textView: TextView, cor: Int) {
+        status = imcStatus
+        binding.txtImc.setTextColor(cor)
+        textView.setCompoundDrawablesWithIntrinsicBounds( R.drawable.outline_arrow_forward_ios_24,
+            0, 0, 0)
+        textView.setCompoundDrawableTintList(ColorStateList.valueOf(cor))
+        textView.text = imcStatus
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 26f)
+    }
+
 }
