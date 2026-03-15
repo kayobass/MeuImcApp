@@ -44,18 +44,22 @@ class MainActivity : AppCompatActivity() {
                     binding.txtCampoAltura.text = "Preencha o campo*"
                     binding.editAltura.requestFocus()
                 }
+
                 altura.toDouble() == 0.0 -> {
                     binding.txtCampoAltura.text = "Coloque um valor maior que 0*"
                     binding.editAltura.requestFocus()
                 }
+
                 peso.isEmpty() -> {
                     binding.txtCampoPeso.text = "Preencha o campo*"
                     binding.editPeso.requestFocus()
                 }
+
                 peso.toDouble() == 0.0 -> {
                     binding.txtCampoPeso.text = "Coloque um valor maior que 0*"
                     binding.editPeso.requestFocus()
                 }
+
                 else -> {
                     val imc = calcularImc(altura.toDouble(), peso.toDouble())
                     intent.putExtra("CHAVE_IMC", imc)

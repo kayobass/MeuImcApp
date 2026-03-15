@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Bottom 15dp Shadow -->
     <item>
-        <shape  android:shape="rectangle">
+        <shape android:shape="rectangle">
             <!--            Button Shadow Color -->
             <solid android:color="#093d1c" />
             <corners android:radius="7dp" />
@@ -10,11 +10,12 @@
     </item>
     <!-- White Top color -->
     <item android:bottom="8dp">
-        <shape  android:shape="rectangle">
-            <padding android:bottom="10dp"
-                android:top="10dp"
+        <shape android:shape="rectangle">
+            <padding
+                android:bottom="10dp"
                 android:left="20dp"
-                android:right="20dp"/>
+                android:right="20dp"
+                android:top="10dp" />
             <!--            Button TOP Color -->
             <solid android:color="@color/principal" />
             <corners android:radius="7dp" />

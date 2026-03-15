@@ -32,28 +32,56 @@ class ResultActivity : AppCompatActivity() {
 
         when {
             imc < 17.0 -> {
-                destacarLinha(imcStatus = "Muito Abaixo", textView = binding.txtMuitoAbaixo, cor = ContextCompat.getColor(this,
-                    R.color.muito_abaixo))
+                destacarLinha(
+                    imcStatus = "Muito Abaixo",
+                    textView = binding.txtMuitoAbaixo,
+                    cor = ContextCompat.getColor(
+                        this,
+                        R.color.muito_abaixo
+                    )
+                )
             }
 
             imc < 18.5 -> {
-                destacarLinha(imcStatus = "Abaixo", textView = binding.txtAbaixo, cor = ContextCompat.getColor(this,
-                    R.color.abaixo))
+                destacarLinha(
+                    imcStatus = "Abaixo",
+                    textView = binding.txtAbaixo,
+                    cor = ContextCompat.getColor(
+                        this,
+                        R.color.abaixo
+                    )
+                )
             }
 
             imc < 25 -> {
-                destacarLinha(imcStatus = "Normal", textView = binding.txtNormal, cor = ContextCompat.getColor(this,
-                    R.color.normal))
+                destacarLinha(
+                    imcStatus = "Normal",
+                    textView = binding.txtNormal,
+                    cor = ContextCompat.getColor(
+                        this,
+                        R.color.normal
+                    )
+                )
             }
 
             imc < 30 -> {
-                destacarLinha(imcStatus = "Acima", textView = binding.txtAcima, cor = ContextCompat.getColor(this,
-                    R.color.acima))
+                destacarLinha(
+                    imcStatus = "Acima", textView = binding.txtAcima, cor = ContextCompat.getColor(
+                        this,
+                        R.color.acima
+                    )
+                )
             }
 
             else -> {
-                destacarLinha(imcStatus = "Muito Acima", textView = binding.txtMuitoAcima, cor = ContextCompat.getColor(this,
-                    R.color.muito_acima))
+                destacarLinha(
+                    imcStatus = "Muito Acima",
+                    textView = binding.txtMuitoAcima,
+                    cor = ContextCompat.getColor(
+                        this,
+                        R.color.muito_acima
+                    )
+                )
             }
         }
 
@@ -89,8 +117,10 @@ class ResultActivity : AppCompatActivity() {
     private fun destacarLinha(imcStatus: String, textView: TextView, cor: Int) {
         status = imcStatus
         binding.txtImc.setTextColor(cor)
-        textView.setCompoundDrawablesWithIntrinsicBounds( R.drawable.outline_arrow_forward_ios_24,
-            0, 0, 0)
+        textView.setCompoundDrawablesWithIntrinsicBounds(
+            R.drawable.outline_arrow_forward_ios_24,
+            0, 0, 0
+        )
         textView.setCompoundDrawableTintList(ColorStateList.valueOf(cor))
         textView.text = imcStatus
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 26f)
